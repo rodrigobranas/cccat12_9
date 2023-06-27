@@ -1,0 +1,6 @@
+1 - yarn init -y
+2 - yarn add express @types/express jest @types/jest axios ts-node ts-jest nodemon typescript
+3 - npx tsc --init
+4 - npx ts-jest config:init
+5 - npx jest
+6 - npx nodemon src/main.ts
