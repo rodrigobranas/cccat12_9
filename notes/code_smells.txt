@@ -45,6 +45,7 @@ introduzir ternário
 técnicas de refactoring:
 
 tratar adequadamente os erros ou exceções
+apagar try/catch desnecessário
 
 7 - números mágicos
 
@@ -56,3 +57,11 @@ extrair variáveis explicativas
 8 - método longo
 
 9 - classe longa
+
+10 - regexp muito complexa
+
+simplificar a regexp
+
+11 - variável declarada no lugar errado
+
+mover a variável
