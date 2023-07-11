@@ -4,6 +4,8 @@ axios.defaults.validateStatus = function () {
 	return true;
 };
 
+// broad integration test
+
 test("Deve fazer o cálculo do preço de uma corrida durante o dia", async function () {
 	const input = {
 		segments: [
@@ -70,7 +72,7 @@ test("Deve cadastrar o motorista", async function () {
 		name: "John Doe",
 		email: "john.doe@gmail.com",
 		document: "83432616074",
-		carPlate: "AAA999"
+		carPlate: "AAA9999"
 	};
 	const response1 = await axios.post("http://localhost:3000/drivers", input);
 	const output1 = response1.data;
