@@ -13,3 +13,7 @@ High level modules should not depend on low level modules
 ISP - Interface Segregation Principle
 
 Não dependa de coisas, recursos, métodos, funções, que você não precisa
+
+OCP - Open/Closed Principle
+
+Devemos estar abertos para extensão e fechados para modificação
