@@ -1,4 +1,4 @@
-import Driver from "../../domain/Driver";
+import Driver from "../../domain/driver/Driver";
 
 export default interface DriverRepository {
 	save (driver: Driver): Promise<void>;

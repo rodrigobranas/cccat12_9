@@ -1,7 +1,7 @@
 import crypto from "crypto";
-import Cpf from "./Cpf";
-import Email from "./Email";
-import UUIDGenerator from "./UUIDGenerator";
+import Cpf from "../person/Cpf";
+import Email from "../person/Email";
+import UUIDGenerator from "../identity/UUIDGenerator";
 import CarPlate from "./CarPlate";
 
 export default class Driver {

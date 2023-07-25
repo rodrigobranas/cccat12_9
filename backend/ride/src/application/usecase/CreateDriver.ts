@@ -1,5 +1,5 @@
 import DriverRepository from "../repository/DriverRepository";
-import Driver from "../../domain/Driver";
+import Driver from "../../domain/driver/Driver";
 
 // Application
 export default class CreateDriver {

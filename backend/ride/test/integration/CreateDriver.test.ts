@@ -2,7 +2,7 @@ import CreateDriver from "../../src/application/usecase/CreateDriver";
 import GetDriver from "../../src/application/usecase/GetDriver";
 import sinon from "sinon";
 import DriverRepositoryDatabase from "../../src/infra/repository/DriverRepositoryDatabase";
-import Driver from "../../src/domain/Driver";
+import Driver from "../../src/domain/driver/Driver";
 import DriverRepository from "../../src/application/repository/DriverRepository";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 

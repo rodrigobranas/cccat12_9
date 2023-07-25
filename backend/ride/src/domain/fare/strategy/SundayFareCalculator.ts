@@ -1,5 +1,5 @@
 import FareCalculator from "./FareCalculator";
-import Segment from "./Segment";
+import Segment from "../../ride/Segment";
 
 export default class SundayFareCalculator implements FareCalculator {
 	FARE = 2.9;

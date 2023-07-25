@@ -1,5 +1,5 @@
 import PassengerRepository from "../repository/PassengerRepository";
-import Passenger from "../../domain/Passenger";
+import Passenger from "../../domain/passenger/Passenger";
 
 export default class CreatePassenger {
 
