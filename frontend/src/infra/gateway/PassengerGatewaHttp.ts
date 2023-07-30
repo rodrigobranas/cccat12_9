@@ -1,6 +1,6 @@
 import PassengerGateway from "./PassengerGateway";
 import HttpClient from "../http/HttpClient";
-import Passenger from "../domain/passenger/Passenger";
+import Passenger from "../../domain/Passenger";
 
 export default class PassengerGatewayHttp implements PassengerGateway {
 	

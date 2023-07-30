@@ -1,3 +1,5 @@
+import Driver from "../../domain/Driver";
+
 export default interface DriverGateway {
-	save (driver: any): Promise<any>;
+	save (driver: Driver): Promise<string>;
 }
