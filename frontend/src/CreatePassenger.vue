@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { inject, ref } from 'vue';
 	import PassengerGateway from './infra/gateway/PassengerGateway';
-	import Passenger from './domain/passenger/Passenger';
+	import Passenger from './domain/Passenger';
 
 	const passenger = ref(new Passenger("", "", "", ""));
 	const passengerId = ref("");
@@ -25,3 +25,4 @@
 
 <style scoped>
 </style>
+./domain/Passenger

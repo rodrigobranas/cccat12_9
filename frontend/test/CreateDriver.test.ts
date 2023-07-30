@@ -1,6 +1,5 @@
 import { mount } from "@vue/test-utils";
 import CreateDriverVue from "../src/CreateDriver.vue";
-import DriverGatewayHttp from "../src/infra/gateway/DriverGatewayHttp";
 import DriverGateway from "../src/infra/gateway/DriverGateway";
 
 function sleep (time: number) {
