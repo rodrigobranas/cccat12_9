@@ -17,8 +17,6 @@
 			document: document.value,
 			carPlate: carPlate.value
 		};
-		// const response = await axios.post("http://localhost:3000/drivers", input);
-		// const output = response.data;
 		const output = await driverGateway.save(input);
 		driverId.value = output.driverId;
 	}
