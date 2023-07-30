@@ -26,4 +26,3 @@
 
 <style scoped>
 </style>
-./infra/gateway/DriverGatewayHttp

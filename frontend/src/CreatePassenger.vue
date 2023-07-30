@@ -25,4 +25,3 @@
 
 <style scoped>
 </style>
-./domain/Passenger
