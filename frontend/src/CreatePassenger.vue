@@ -3,7 +3,7 @@
 	import PassengerGateway from './infra/gateway/PassengerGateway';
 	import Passenger from './domain/Passenger';
 
-	const passenger = ref(new Passenger("", "", "", ""));
+	const passenger = ref(new Passenger());
 	const passengerId = ref("");
 
 	const passengerGateway = inject("passengerGateway") as PassengerGateway;
