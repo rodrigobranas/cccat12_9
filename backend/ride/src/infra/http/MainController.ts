@@ -22,7 +22,6 @@ export default class MainController {
 		});
 		
 		httpServer.on("post", "/passengers", async function (params: any, body: any) {
-			console.log(body);
 			const output = await createPassenger.execute(body);
 			return output;
 		});

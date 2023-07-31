@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import CreatePassengerVue from "../src/CreatePassenger.vue";
-import PassengerGatewayHttp from "../src/infra/gateway/PassengerGatewaHttp";
+import PassengerGatewayHttp from "../src/infra/gateway/PassengerGatewayHttp";
 import AxiosAdapter from "../src/infra/http/AxiosAdapter";
 
 function sleep (time: number) {

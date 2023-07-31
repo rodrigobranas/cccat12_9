@@ -13,7 +13,7 @@ function sleep (time: number) {
 test("Deve criar um motorista", async function () {
 	const driverGateway: DriverGateway = {
 		async save (driver: any): Promise<any> {
-			return { driverId: "98846fa9-7c06-4ad8-ac5f-9c96f50406bd" };
+			return "98846fa9-7c06-4ad8-ac5f-9c96f50406bd";
 		}
 	};
 	const wrapper = mount(CreateDriverVue, {
@@ -30,4 +30,5 @@ test("Deve criar um motorista", async function () {
 	await wrapper.get(".create-driver-button").trigger("click");
 	await sleep(200);
 	expect(wrapper.get(".driver-id").text()).toHaveLength(36);
+	console.log(wrapper.get(".driver-id").text());
 });
