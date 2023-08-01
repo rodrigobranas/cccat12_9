@@ -2,6 +2,7 @@ import CreatePassenger from "../../src/application/usecase/CreatePassenger";
 import GetRide from "../../src/application/usecase/GetRide";
 import RequestRide from "../../src/application/usecase/RequestRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
+import RepositoryFactoryDatabase from "../../src/infra/factory/RepositoryFactoryDatabase";
 import PassengerRepositoryDatabase from "../../src/infra/repository/PassengerRepositoryDatabase";
 import RideRepositoryDatabase from "../../src/infra/repository/RideRepositoryDatabase";
 
@@ -55,7 +56,7 @@ test("Deve obter uma corrida", async function () {
 	};
 	const requestRide = new RequestRide(new RideRepositoryDatabase(connection));
 	const outputRequestRide = await requestRide.execute(inputRequestRide);
-	const getRide = new GetRide(new RideRepositoryDatabase(connection));
+	const getRide = new GetRide(new RepositoryFactoryDatabase(connection));
 	const outputGetRide = await getRide.execute({ rideId: outputRequestRide.rideId });
 	expect(outputGetRide.rideId).toBeDefined();
 	expect(outputGetRide.status).toBe("requested");

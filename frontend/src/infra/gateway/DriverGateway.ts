@@ -1,5 +1,12 @@
 import Driver from "../../domain/Driver";
 
 export default interface DriverGateway {
-	save (driver: Driver): Promise<string>;
+	create (driver: Driver): Promise<string>;
+}
+
+export type CreateDriverInput = {
+	name: string,
+	email: string,
+	document: string,
+	carPlate: string
 }

@@ -1,5 +1,12 @@
 import Passenger from "../../domain/Passenger";
 
 export default interface PassengerGateway {
-	save (passenger: Passenger): Promise<string>;
+	create (passenger: Passenger): Promise<string>;
 }
+
+export type CreatePassengerInput = {
+	name: string,
+	email: string,
+	document: string
+}
+

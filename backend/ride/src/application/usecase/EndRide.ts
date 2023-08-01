@@ -11,6 +11,8 @@ export default class EndRide {
 		const ride = await this.rideRepository.get(input.rideId);
 		ride.end(input.date);
 		await this.rideRepository.update(ride);
+		// processPayment
+		// sendEmail
 	}
 }
 

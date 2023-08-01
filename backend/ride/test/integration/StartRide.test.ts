@@ -5,6 +5,7 @@ import GetRide from "../../src/application/usecase/GetRide";
 import RequestRide from "../../src/application/usecase/RequestRide";
 import StartRide from "../../src/application/usecase/StartRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
+import RepositoryFactoryDatabase from "../../src/infra/factory/RepositoryFactoryDatabase";
 import DriverRepositoryDatabase from "../../src/infra/repository/DriverRepositoryDatabase";
 import PassengerRepositoryDatabase from "../../src/infra/repository/PassengerRepositoryDatabase";
 import RideRepositoryDatabase from "../../src/infra/repository/RideRepositoryDatabase";
@@ -58,7 +59,7 @@ test("Deve iniciar uma corrida", async function () {
 	const startRide = new StartRide(new RideRepositoryDatabase(connection));
 	await startRide.execute(inputStartRide);
 
-	const getRide = new GetRide(new RideRepositoryDatabase(connection));
+	const getRide = new GetRide(new RepositoryFactoryDatabase(connection));
 	const outputGetRide = await getRide.execute({ rideId: outputRequestRide.rideId });
 	expect(outputGetRide.driverId).toBe(outputCreateDriver.driverId);
 	expect(outputGetRide.status).toBe("in_progress");

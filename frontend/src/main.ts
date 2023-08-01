@@ -5,10 +5,12 @@ import PassengerGatewayHttp from "./infra/gateway/PassengerGatewayHttp";
 import DriverGatewayHttp from "./infra/gateway/DriverGatewayHttp";
 import AxiosAdapter from "./infra/http/AxiosAdapter";
 import FetchAdapter from "./infra/http/FetchAdapter";
+import GeoLocationNavigatorAdapter from "./infra/geolocation/GeoLocationNavigatorAdapter";
 
 const app = createApp(App);
 const httpClient = new AxiosAdapter();
 // const httpClient = new FetchAdapter();
 app.provide("passengerGateway", new PassengerGatewayHttp(httpClient));
 app.provide("driverGateway", new DriverGatewayHttp(httpClient));
+app.provide("geoLocation", new GeoLocationNavigatorAdapter());
 app.mount("#app");
