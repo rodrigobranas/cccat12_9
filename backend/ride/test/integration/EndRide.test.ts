@@ -1,14 +1,12 @@
 import AcceptRide from "../../src/application/usecase/AcceptRide";
-import CreateDriver from "../../src/application/usecase/CreateDriver";
-import CreatePassenger from "../../src/application/usecase/CreatePassenger";
 import EndRide from "../../src/application/usecase/EndRide";
 import GetRide from "../../src/application/usecase/GetRide";
 import RequestRide from "../../src/application/usecase/RequestRide";
 import StartRide from "../../src/application/usecase/StartRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import RepositoryFactoryDatabase from "../../src/infra/factory/RepositoryFactoryDatabase";
-import DriverRepositoryDatabase from "../../src/infra/repository/DriverRepositoryDatabase";
-import PassengerRepositoryDatabase from "../../src/infra/repository/PassengerRepositoryDatabase";
+import AccountGatewayHttp from "../../src/infra/gateway/AccountGatewayHttp";
+import AxiosAdapter from "../../src/infra/http/AxiosAdapter";
 import RideRepositoryDatabase from "../../src/infra/repository/RideRepositoryDatabase";
 
 test("Deve finalizar uma corrida", async function () {
@@ -18,8 +16,9 @@ test("Deve finalizar uma corrida", async function () {
 		document: "83432616074"
 	};
 	const connection = new PgPromiseAdapter();
-	const createPassenger = new CreatePassenger(new PassengerRepositoryDatabase(connection));
-	const outputCreatePassenger = await createPassenger.execute(inputCreatePassenger);
+	const accountGateway = new AccountGatewayHttp(new AxiosAdapter());
+	const outputCreatePassenger = await accountGateway.createPassenger(inputCreatePassenger);
+	
 
 	const inputRequestRide = {
 		passengerId: outputCreatePassenger.passengerId,
@@ -42,8 +41,7 @@ test("Deve finalizar uma corrida", async function () {
 		document: "83432616074",
 		carPlate: "AAA9999"
 	};
-	const createDriver = new CreateDriver(new DriverRepositoryDatabase(connection));
-	const outputCreateDriver = await createDriver.execute(inputCreateDriver);
+	const outputCreateDriver = await accountGateway.createDriver(inputCreateDriver);
 
 	const inputAcceptRide = {
 		rideId: outputRequestRide.rideId,

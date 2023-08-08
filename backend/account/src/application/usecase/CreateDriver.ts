@@ -8,6 +8,7 @@ export default class CreateDriver {
 	}
 
 	async execute (input: Input): Promise<Output> {
+		console.log("createDriver", input);
 		const driver = Driver.create(input.name, input.email, input.document, input.carPlate);
 		await this.driverRepository.save(driver);
 		return {

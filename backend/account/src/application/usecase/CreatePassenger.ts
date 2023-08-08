@@ -7,6 +7,7 @@ export default class CreatePassenger {
 	}
 
 	async execute (input: Input): Promise<Output> {
+		console.log("createPassenger", input);
 		const passenger = Passenger.create(input.name, input.email, input.document);
 		await this.passengerRepository.save(passenger);
 		return {

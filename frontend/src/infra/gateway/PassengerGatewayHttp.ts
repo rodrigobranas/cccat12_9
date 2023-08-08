@@ -13,7 +13,7 @@ export default class PassengerGatewayHttp implements PassengerGateway {
 			email: passenger.email.getValue(),
 			document: passenger.document.getValue()
 		};
-		const passengerData = await this.httpClient.post("http://localhost:3000/passengers", input);
+		const passengerData = await this.httpClient.post("http://localhost:3002/passengers", input);
 		return passengerData.passengerId;
 	}
 }

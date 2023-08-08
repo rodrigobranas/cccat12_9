@@ -1,9 +1,9 @@
-import CreatePassenger from "../../src/application/usecase/CreatePassenger";
 import GetRide from "../../src/application/usecase/GetRide";
 import RequestRide from "../../src/application/usecase/RequestRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import RepositoryFactoryDatabase from "../../src/infra/factory/RepositoryFactoryDatabase";
-import PassengerRepositoryDatabase from "../../src/infra/repository/PassengerRepositoryDatabase";
+import AccountGatewayHttp from "../../src/infra/gateway/AccountGatewayHttp";
+import AxiosAdapter from "../../src/infra/http/AxiosAdapter";
 import RideRepositoryDatabase from "../../src/infra/repository/RideRepositoryDatabase";
 
 test("Deve solicitar uma corrida", async function () {
@@ -13,8 +13,8 @@ test("Deve solicitar uma corrida", async function () {
 		document: "83432616074"
 	};
 	const connection = new PgPromiseAdapter();
-	const createPassenger = new CreatePassenger(new PassengerRepositoryDatabase(connection));
-	const outputCreatePassenger = await createPassenger.execute(inputCreatePassenger);
+	const accountGateway = new AccountGatewayHttp(new AxiosAdapter());
+	const outputCreatePassenger = await accountGateway.createPassenger(inputCreatePassenger);
 	const inputRequestRide = {
 		passengerId: outputCreatePassenger.passengerId,
 		from: {
@@ -40,8 +40,8 @@ test("Deve obter uma corrida", async function () {
 		document: "83432616074"
 	};
 	const connection = new PgPromiseAdapter();
-	const createPassenger = new CreatePassenger(new PassengerRepositoryDatabase(connection));
-	const outputCreatePassenger = await createPassenger.execute(inputCreatePassenger);
+	const accountGateway = new AccountGatewayHttp(new AxiosAdapter());
+	const outputCreatePassenger = await accountGateway.createPassenger(inputCreatePassenger);
 	const inputRequestRide = {
 		passengerId: outputCreatePassenger.passengerId,
 		from: {

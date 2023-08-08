@@ -20,6 +20,7 @@ create table cccat12.ride (
 	ride_id uuid primary key,
 	passenger_id uuid,
 	driver_id uuid,
+	transaction_id uuid,
 	from_lat numeric,
 	from_long numeric,
 	to_lat numeric,
@@ -30,4 +31,11 @@ create table cccat12.ride (
 	start_date timestamp,
 	end_date timestamp,
 	price numeric
+);
+
+create table cccat12.transaction (
+	transaction_id uuid primary key,
+	name text,
+	email text,
+	amount numeric
 );

@@ -14,7 +14,7 @@ export default class DriverGatewayHttp implements DriverGateway {
 			document: driver.document.getValue(),
 			carPlate: driver.carPlate.getValue()
 		}
-		const output = await this.httpClient.post("http://localhost:3000/drivers", input);
+		const output = await this.httpClient.post("http://localhost:3002/drivers", input);
 		return output.driverId;
 	}
 }
