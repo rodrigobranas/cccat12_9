@@ -11,12 +11,14 @@ import HapiAdapter from "./infra/http/HapiAdapter";
 import RepositoryFactoryDatabase from "./infra/factory/RepositoryFactoryDatabase";
 import UsecaseFactory from "./application/factory/UsecaseFactory";
 import Registry from "./infra/di/Registry";
+import UserRepositoryDatabase from "./infra/repository/UserRepositoryDatabase";
 
 // main composition root
 const connection = new PgPromiseAdapter();
 const passengerRepository = new PassengerRepositoryDatabase(connection);
 const driverRepository = new DriverRepositoryDatabase(connection);
-const createPassenger = new CreatePassenger(passengerRepository);
+const userRepository = new UserRepositoryDatabase(connection);
+const createPassenger = new CreatePassenger(passengerRepository, userRepository);
 const httpServer = new ExpressAdapter();
 const repositoryFactory = new RepositoryFactoryDatabase(connection);
 const usecaseFactory = new UsecaseFactory(repositoryFactory);

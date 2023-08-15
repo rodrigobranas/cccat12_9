@@ -39,3 +39,11 @@ create table cccat12.transaction (
 	email text,
 	amount numeric
 );
+
+create table cccat12.user (
+	user_id uuid primary key,
+	email text,
+	password text,
+	password_type text,
+	salt text
+);

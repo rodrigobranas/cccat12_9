@@ -11,7 +11,6 @@ export default class ProcessPayment {
 	}
 
 	async execute (input: Input): Promise<Output> {
-		console.log("processPayment", input);
 		const outputPaymentGateway = await this.paymentGateway.createTransaction(input);
 		const transaction = new Transaction(outputPaymentGateway.transactionId, input.name, input.email, input.amount);
 		await this.transactionRepository.save(transaction);
