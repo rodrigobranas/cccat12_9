@@ -6,7 +6,9 @@ import StartRide from "../../src/application/usecase/StartRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import RepositoryFactoryDatabase from "../../src/infra/factory/RepositoryFactoryDatabase";
 import AccountGatewayHttp from "../../src/infra/gateway/AccountGatewayHttp";
+import PaymentGatewayHttp from "../../src/infra/gateway/PaymentGatewayHttp";
 import AxiosAdapter from "../../src/infra/http/AxiosAdapter";
+import RabbitMQAdapter from "../../src/infra/queue/RabbitMQAdapter";
 import RideRepositoryDatabase from "../../src/infra/repository/RideRepositoryDatabase";
 
 test("Deve finalizar uma corrida", async function () {
@@ -62,7 +64,9 @@ test("Deve finalizar uma corrida", async function () {
 		rideId: outputRequestRide.rideId,
 		date: new Date("2021-03-01T10:40:00")
 	}
-	const endRide = new EndRide(new RideRepositoryDatabase(connection));
+	const queue = new RabbitMQAdapter();
+	await queue.connect();
+	const endRide = new EndRide(new RideRepositoryDatabase(connection), new PaymentGatewayHttp(new AxiosAdapter()), new AccountGatewayHttp(new AxiosAdapter()), queue);
 	await endRide.execute(inputEndRide);
 
 	const getRide = new GetRide(new RepositoryFactoryDatabase(connection));

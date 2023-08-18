@@ -3,6 +3,7 @@ import Ride from "../../domain/ride/Ride"
 import AccountGatewayHttp from "../../infra/gateway/AccountGatewayHttp";
 import PaymentGatewayHttp from "../../infra/gateway/PaymentGatewayHttp";
 import AxiosAdapter from "../../infra/http/AxiosAdapter";
+import Queue from "../../infra/queue/Queue";
 import AccountGateway from "../gateway/AccountGateway";
 import PaymentGateway from "../gateway/PaymentGateway";
 import RideRepository from "../repository/RideRepository";
@@ -13,7 +14,8 @@ export default class EndRide {
 	constructor (
 		readonly rideRepository: RideRepository, 
 		readonly paymentGateway: PaymentGateway = new PaymentGatewayHttp(new AxiosAdapter()),
-		readonly accountGateway: AccountGateway = new AccountGatewayHttp(new AxiosAdapter())
+		readonly accountGateway: AccountGateway = new AccountGatewayHttp(new AxiosAdapter()),
+		readonly queue: Queue
 	) {
 	}
 
@@ -28,7 +30,8 @@ export default class EndRide {
 			email: passenger.email,
 			amount
 		}
-		await this.paymentGateway.process(paymentGatewayInput);
+		// await this.paymentGateway.process(paymentGatewayInput);
+		await this.queue.publish("rideCompleted", paymentGatewayInput);
 	}
 }
 

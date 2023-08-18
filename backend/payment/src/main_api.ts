@@ -8,16 +8,25 @@ import TransactionRepositoryDatabase from "./infra/repository/TransactionReposit
 import ProcessPayment from "./application/usecase/ProcessPayment";
 import PayPalGateway from "./infra/gateway/PayPalGateway";
 import GetTransaction from "./application/usecase/GetTransaction";
+import RabbitMQAdapter from "./infra/queue/RabbitMQAdapter";
+import QueueController from "./infra/queue/QueueController";
 
 // main composition root
-const connection = new PgPromiseAdapter();
-const transactionRepository = new TransactionRepositoryDatabase(connection);
-const httpServer = new ExpressAdapter();
-const registry = Registry.getInstance();
-const paymentGateway = new PayPalGateway();
-const processPayment = new ProcessPayment(transactionRepository, paymentGateway);
-const getTransaction = new GetTransaction(transactionRepository);
-registry.provide("processPayment", processPayment);
-registry.provide("getTransaction", getTransaction);
-new MainController(httpServer);
-httpServer.listen(3001);
+async function main () {
+	const connection = new PgPromiseAdapter();
+	const queue = new RabbitMQAdapter();
+	await queue.connect();
+	const transactionRepository = new TransactionRepositoryDatabase(connection);
+	const httpServer = new ExpressAdapter();
+	const registry = Registry.getInstance();
+	const paymentGateway = new PayPalGateway();
+	const processPayment = new ProcessPayment(transactionRepository, paymentGateway);
+	const getTransaction = new GetTransaction(transactionRepository);
+	registry.provide("processPayment", processPayment);
+	registry.provide("getTransaction", getTransaction);
+	new MainController(httpServer);
+	new QueueController(queue);
+	httpServer.listen(3001);
+}
+
+main();
